@@ -50,12 +50,13 @@ const geometry3 = new THREE.TorusGeometry( 0.7, .15, 16, 100 );
 const material3 = new THREE.PointsMaterial(
     {
         transparent: true,
-        size:0.005
+        size:0.005,
+        // map:normalTexture,
+        color:'white',
     }
 )
 
 
-const torustar = new THREE.Points(geometry3, material3)
 // scene.add(torustar)
 
 const particlesGeometry = new THREE.BufferGeometry;
@@ -201,13 +202,22 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    sphere.rotation.y = .5 * elapsedTime
-    torus.rotation.y = -.3 * elapsedTime
-
+    
     sphere.rotation.y += .5*(targetX - sphere.rotation.y)
     sphere.rotation.x += .5*(targetY - sphere.rotation.x)
     sphere.position.z += .5*(targetY - sphere.rotation.x)
+    sphere.rotation.y = .5 * elapsedTime
+    
+    
+    torus.rotation.y = -.3 * elapsedTime
+    
+    particlesMesh.rotation.y = -.1* elapsedTime
 
+    if (mouseX > 0){
+        particlesMesh.rotation.x = -mouseY * (elapsedTime * .00008)
+        particlesMesh.rotation.y = -mouseX * (elapsedTime * .00008)
+    }
+        
     // Update Orbital Controls
     // controls.update()
 
