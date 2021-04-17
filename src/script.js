@@ -42,17 +42,17 @@ const geometry2 = new THREE.TorusGeometry( 1.2, .15, 16, 100 );
 
 // Materials - Skin
 
-// const material = new THREE.MeshBasicMaterial()
-const material2 = new THREE.MeshStandardMaterial()
-material2.metalness = 0.7
-material2.roughness = 0.2
+const material2 = new THREE.MeshBasicMaterial()
+// const material2 = new THREE.MeshStandardMaterial()
+// material2.metalness = 0.7
+// material2.roughness = 0.2
+// material2.normalMap = normalTexture;
+// material2.color = new THREE.Color(0xffffff)
 
-material2.normalMap = normalTexture;
 
-material2.color = new THREE.Color(0xffffff)
 
 // Mesh
-const torus = new THREE.Mesh(geometry2,material2)
+const torus = new THREE.Mesh(geometry2, material2)
 scene.add(torus)
 
 
@@ -186,6 +186,7 @@ const tick = () =>
 
     // Update objects
     sphere.rotation.y = .5 * elapsedTime
+    torus.rotation.y = -.3 * elapsedTime
 
     sphere.rotation.y += .5*(targetX - sphere.rotation.y)
     sphere.rotation.x += .5*(targetY - sphere.rotation.x)
