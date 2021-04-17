@@ -92,7 +92,7 @@ scene.add(pointLightHelper1)
 // Light2
 
 const pointLight2 = new THREE.PointLight(0x76ff76, 0.1)
-pointLight2.position.set(1,1,-3)
+pointLight2.position.set(1,1,-.5)
 pointLight2.intensity = 2
 scene.add(pointLight2)
 
