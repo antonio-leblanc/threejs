@@ -44,6 +44,8 @@ scene.add(torus)
 
 
 // STARS
+
+// 3
 const geometry3 = new THREE.TorusGeometry( 0.7, .15, 16, 100 );
 const material3 = new THREE.PointsMaterial(
     {
@@ -53,8 +55,21 @@ const material3 = new THREE.PointsMaterial(
 )
 
 
-const stars = new THREE.Points(geometry3, material3)
-scene.add(stars)
+const torustar = new THREE.Points(geometry3, material3)
+// scene.add(torustar)
+
+const particlesGeometry = new THREE.BufferGeometry;
+const particlesCnt = 5000;
+
+const posArray = new Float32Array(particlesCnt * 3)
+
+for (let i = 0; i < posArray.length; i++) {
+    posArray[i] = (Math.random() -0.5) * 5
+}
+
+particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
+const particlesMesh = new THREE.Points(particlesGeometry, material3)
+scene.add(particlesMesh)
 
 
 // Light1
