@@ -16,25 +16,29 @@
 		segments = 32,
 		rotation = 6;  
 
+	// Scene
 	var scene = new THREE.Scene();
 
+	// Cam
 	var camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 1000);
 	camera.position.z = 1.5;
 
+	// Renderer
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(width, height);
 
+	// Light	
 	scene.add(new THREE.AmbientLight(0x333333));
-
 	var light = new THREE.DirectionalLight(0xffffff, 1);
 	light.position.set(5,3,5);
 	scene.add(light);
 
-    var sphere = createSphere(radius, segments);
+	// Sphere
+	var sphere = createSphere(radius, segments);
 	sphere.rotation.y = rotation; 
 	scene.add(sphere)
 
-    var clouds = createClouds(radius, segments);
+	var clouds = createClouds(radius, segments);
 	clouds.rotation.y = rotation;
 	scene.add(clouds)
 
