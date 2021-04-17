@@ -36,19 +36,25 @@ const sphere = new THREE.Mesh(geometry,material)
 scene.add(sphere)
 
 
-// OTHER Material
+// TORUS
 const geometry2 = new THREE.TorusGeometry( 1.2, .15, 16, 100 );
 const material2 = new THREE.MeshBasicMaterial()
-
-
-
-
-
-
-
-// Mesh
 const torus = new THREE.Mesh(geometry2, material2)
 scene.add(torus)
+
+
+// STARS
+const geometry3 = new THREE.TorusGeometry( 0.7, .15, 16, 100 );
+const material3 = new THREE.PointsMaterial(
+    {
+        transparent: true,
+        size:0.005
+    }
+)
+
+
+const stars = new THREE.Points(geometry3, material3)
+scene.add(stars)
 
 
 // Light1
