@@ -16,65 +16,62 @@ const canvas = document.querySelector('canvas.webgl')
 // Scene
 const scene = new THREE.Scene()
 
-// Objects
-// const geometry = new THREE.TorusGeometry( .7, .2, 16, 100 );
-const geometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
 
-// Materials - Skin
+// Materials
 
-// const material = new THREE.MeshBasicMaterial()
-const material = new THREE.MeshStandardMaterial()
-material.metalness = 0.7
-material.roughness = 0.2
-material.normalMap = normalTexture;
-material.color = new THREE.Color(0xffffff)
+    const textureMaterial = new THREE.MeshStandardMaterial()
+    textureMaterial.metalness = 0.7
+    textureMaterial.roughness = 0.2
+    textureMaterial.normalMap = normalTexture;
+    textureMaterial.color = new THREE.Color(0xffffff)
 
 
-const basicMaterial = new THREE.MeshBasicMaterial()
+    const basicMaterial = new THREE.MeshBasicMaterial()
 
-
-
-const sphere = new THREE.Mesh(geometry,material)
-scene.add(sphere)
+// Sun
+    const sunGeometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
+    const sun = new THREE.Mesh(sunGeometry, textureMaterial)
+    scene.add(sun)
 
 
 // Satellite
-const earth = new THREE.Mesh(geometry, basicMaterial)
-earth.position.set(0,0,.5); // offset from center
-var earthContainer = new THREE.Object3D();
-earthContainer.add(earth)
-scene.add(earthContainer)
+    const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
+    const earth = new THREE.Mesh(earthGeometry, basicMaterial)
+    earth.position.set(0,0,1); // offset from center
+    var earthContainer = new THREE.Object3D();
+    earthContainer.add(earth)
+    scene.add(earthContainer)
 
 // TORUS
-const geometry2 = new THREE.TorusGeometry( 1.2, .05, 16, 100, );
-const torus = new THREE.Mesh(geometry2, basicMaterial)
+    const geometry2 = new THREE.TorusGeometry( 1.5, .05, 16, 100, );
+    const torus = new THREE.Mesh(geometry2, basicMaterial)
 scene.add(torus)
 
 
 // STARS
 
-const material3 = new THREE.PointsMaterial(
-    {
-        transparent: true,
-        size:0.005,
-        // map:normalTexture,
-        color:'white',
+    const pointsMaterial = new THREE.PointsMaterial(
+        {
+            transparent: true,
+            size:0.005,
+            // map:normalTexture,
+            color:'white',
+        }
+    )
+
+
+    const particlesGeometry = new THREE.BufferGeometry;
+    const particlesCnt = 5000;
+
+    const posArray = new Float32Array(particlesCnt * 3)
+
+    for (let i = 0; i < posArray.length; i++) {
+        posArray[i] = (Math.random() -0.5) * 5
     }
-)
 
-
-const particlesGeometry = new THREE.BufferGeometry;
-const particlesCnt = 5000;
-
-const posArray = new Float32Array(particlesCnt * 3)
-
-for (let i = 0; i < posArray.length; i++) {
-    posArray[i] = (Math.random() -0.5) * 5
-}
-
-particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
-const particlesMesh = new THREE.Points(particlesGeometry, material3)
-scene.add(particlesMesh)
+    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3))
+    const particlesMesh = new THREE.Points(particlesGeometry, pointsMaterial)
+    scene.add(particlesMesh)
 
 
 // Light1
@@ -192,7 +189,7 @@ function onDocumentMouseMove(event){
 window.addEventListener('scroll', updateSphere)
 
 function updateSphere(event){
-    sphere.position.y = -window.scrollY * .003
+    sun.position.y = -window.scrollY * .003
 }
 
 const clock = new THREE.Clock()
@@ -207,10 +204,10 @@ const tick = () =>
 
     // Update objects
 
-    sphere.rotation.y += .5*(targetX - sphere.rotation.y)
-    sphere.rotation.x += .5*(targetY - sphere.rotation.x)
-    sphere.position.z += .5*(targetY - sphere.rotation.x)
-    sphere.rotation.y = .5 * elapsedTime
+    sun.rotation.y += .5*(targetX - sun.rotation.y)
+    sun.rotation.x += .5*(targetY - sun.rotation.x)
+    sun.position.z += .5*(targetY - sun.rotation.x)
+    sun.rotation.y = .5 * elapsedTime
     
 
     earth.rotation.y += 0.01; // rotate around its own axis
