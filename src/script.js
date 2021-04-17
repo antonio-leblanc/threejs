@@ -26,21 +26,28 @@ const geometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
 const material = new THREE.MeshStandardMaterial()
 material.metalness = 0.7
 material.roughness = 0.2
-
 material.normalMap = normalTexture;
-
 material.color = new THREE.Color(0xffffff)
 
-// Mesh
+
+const basicMaterial = new THREE.MeshBasicMaterial()
+
+
+
 const sphere = new THREE.Mesh(geometry,material)
-var sphereContainer = new THREE.Object3D();
-sphereContainer.add(sphere)
-scene.add(sphereContainer)
+scene.add(sphere)
+
+
+// Satellite
+const earth = new THREE.Mesh(geometry, basicMaterial)
+earth.position.set(0,0,.5); // offset from center
+var earthContainer = new THREE.Object3D();
+earthContainer.add(earth)
+scene.add(earthContainer)
 
 // TORUS
 const geometry2 = new THREE.TorusGeometry( 1.2, .05, 16, 100, );
-const material2 = new THREE.MeshBasicMaterial()
-const torus = new THREE.Mesh(geometry2, material2)
+const torus = new THREE.Mesh(geometry2, basicMaterial)
 scene.add(torus)
 
 
@@ -199,22 +206,28 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
 
     // Update objects
-    
+
     sphere.rotation.y += .5*(targetX - sphere.rotation.y)
     sphere.rotation.x += .5*(targetY - sphere.rotation.x)
     sphere.position.z += .5*(targetY - sphere.rotation.x)
     sphere.rotation.y = .5 * elapsedTime
     
+
+    earth.rotation.y += 0.01; // rotate around its own axis
+    earth.rotation.y = .5 * elapsedTime
+    earthContainer.rotation.y += 0.01; // rotate around center    
     
+
     torus.rotation.y = -.3 * elapsedTime
     
-    particlesMesh.rotation.y = -.1* elapsedTime
 
+    particlesMesh.rotation.y = -.1* elapsedTime
     if (mouseX > 0){
         particlesMesh.rotation.x = -mouseY * (elapsedTime * .00008)
         particlesMesh.rotation.y = -mouseX * (elapsedTime * .00008)
     }
         
+
     // Update Orbital Controls
     // controls.update()
 
