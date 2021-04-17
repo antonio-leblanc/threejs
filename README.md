@@ -1,17 +1,24 @@
-# Three.js Starter
+# Antonas Three.js
 Courtesy of Bruno Simon of https://threejs-journey.xyz/
 
 ## Setup
 Download [Node.js](https://nodejs.org/en/download/).
 Run this followed commands:
 
-``` bash
-# Install dependencies (only the first time)
+### Install dependencies (only the first time)
+```
 npm install
+```
 
-# Run the local server at localhost:8085
+### Run the local server at localhost:8085
+
+```
 npm run dev
+```
 
-# Build for production in the docs/ directory
+# Build and publish
+```
 npm run build
+
+git subtree push --prefix dist origin gh-pages
 ```
