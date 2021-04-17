@@ -33,11 +33,12 @@ material.color = new THREE.Color(0xffffff)
 
 // Mesh
 const sphere = new THREE.Mesh(geometry,material)
-scene.add(sphere)
-
+var sphereContainer = new THREE.Object3D();
+sphereContainer.add(sphere)
+scene.add(sphereContainer)
 
 // TORUS
-const geometry2 = new THREE.TorusGeometry( 1.2, .15, 16, 100 );
+const geometry2 = new THREE.TorusGeometry( 1.2, .05, 16, 100, );
 const material2 = new THREE.MeshBasicMaterial()
 const torus = new THREE.Mesh(geometry2, material2)
 scene.add(torus)
@@ -45,8 +46,6 @@ scene.add(torus)
 
 // STARS
 
-// 3
-const geometry3 = new THREE.TorusGeometry( 0.7, .15, 16, 100 );
 const material3 = new THREE.PointsMaterial(
     {
         transparent: true,
@@ -56,8 +55,6 @@ const material3 = new THREE.PointsMaterial(
     }
 )
 
-
-// scene.add(torustar)
 
 const particlesGeometry = new THREE.BufferGeometry;
 const particlesCnt = 5000;
@@ -76,7 +73,7 @@ scene.add(particlesMesh)
 // Light1
 
 const pointLight = new THREE.PointLight(0xff0000, 0.1)
-pointLight.position.set(-1,1,-3)
+pointLight.position.set(-1,1,-.5)
 pointLight.intensity = 2
 scene.add(pointLight)
 
@@ -145,7 +142,7 @@ window.addEventListener('resize', () =>
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
 camera.position.x = 0
 camera.position.y = 0
-camera.position.z = 2
+camera.position.z = 2.5
 scene.add(camera)
 
 // Controls
