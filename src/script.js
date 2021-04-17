@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+// Debug
 import * as dat from 'dat.gui'
 
 // Debug
@@ -13,12 +14,16 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 // Objects
-const geometry = new THREE.TorusGeometry( .7, .2, 16, 100 );
+// const geometry = new THREE.TorusGeometry( .7, .2, 16, 100 );
+const geometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
 
-// Materials
+// Materials - Skin
 
-const material = new THREE.MeshBasicMaterial()
-material.color = new THREE.Color(0xff0000)
+// const material = new THREE.MeshBasicMaterial()
+const material = new THREE.MeshStandardMaterial()
+material.metalness = 0.7
+material.roughness = 0.2
+material.color = new THREE.Color(0x00ff00)
 
 // Mesh
 const sphere = new THREE.Mesh(geometry,material)
