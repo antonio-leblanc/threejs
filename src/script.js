@@ -37,17 +37,12 @@ scene.add(sphere)
 
 
 // OTHER Material
-// Objects
 const geometry2 = new THREE.TorusGeometry( 1.2, .15, 16, 100 );
-
-// Materials - Skin
-
 const material2 = new THREE.MeshBasicMaterial()
-// const material2 = new THREE.MeshStandardMaterial()
-// material2.metalness = 0.7
-// material2.roughness = 0.2
-// material2.normalMap = normalTexture;
-// material2.color = new THREE.Color(0xffffff)
+
+
+
+
 
 
 
