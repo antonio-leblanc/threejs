@@ -8,7 +8,7 @@ html,
 body
 {
     height: 100vh;
-    font-family: 'Helvetica';
+    font-family: 'Antonio', sans-serif;
     background-color: rgb(24, 24, 24);
 }
 
@@ -31,7 +31,7 @@ body{
 }
 
 h1{
-    font-size: 8rem;
+    font-size: 15rem;
     text-transform: uppercase;
     color: white;
 }
