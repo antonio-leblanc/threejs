@@ -13,7 +13,7 @@
     <div class="container">
         <!-- <h1>FOCUS</h1> -->
         <div class="content">
-            <h1>Pantera <br>2025</h1>
+            <h1>ANTONIO<br>LEBLANC</h1>
             <p>Wildfire Technologies</p>
         </div>
     </div>
@@ -23,5 +23,18 @@
     <!-- #Soon -->
     <canvas class="webgl2"></canvas>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js" integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/CSSRulePlugin.min.js" integrity="sha512-0bzaetZStCnsUgbCtGVxftzF/L32PNOnrMlYLXwBOKl8cUjTSSDfJVyyJsNwGoI0iE0WUqni2eEfO35kJjFj5g==" crossorigin="anonymous"></script>
+
+    <script>
+
+        const content = CSSRulePlugin.getRule('.content:before')
+        const h1 = document.querySelector('h1')
+
+        const tl = gsap.timeline()
+
+        tl.from(content, {delay:.5, duration:4, cssRule: {scaleX:0}})
+
+    </script>
 </body>
 </html>
