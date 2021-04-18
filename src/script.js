@@ -207,7 +207,15 @@ window.addEventListener('scroll', updateSphere)
 
 function updateSphere(event){
     sun.position.y = -window.scrollY * .003
+        
+    if(this.oldScroll > this.scrollY){
+        camera.position.z -= window.scrollY * .0005
+    } else {
+        camera.position.z += window.scrollY * .0005
+    }
+    this.oldScroll = this.scrollY;
 }
+
 
 const clock = new THREE.Clock()
 
