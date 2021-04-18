@@ -57,6 +57,8 @@ h1{
     width: 50vw ;
     line-height: 97%;
     text-align: right;
+    font-family: 'Poiret One', cursive;
+
 }
 
 h1, p{
@@ -68,6 +70,10 @@ h1, p{
 p{
     font-size: 3em;
     width: 40vw;
+}
+
+.typed-sentence{
+    color: yellow;
 }
 
 section{

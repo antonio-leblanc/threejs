@@ -2,8 +2,25 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
+import Typed from 'typed.js'
 
-//loaging
+var typed = new Typed('.typed-element', 
+    {
+        strings: [
+          "ForestFire Engineering",
+          "Cycling",
+          "Software Development",
+          "Piano",
+          "Data Science",
+          "Skateboarding",
+          "Adventure"
+        ],
+        typeSpeed: 60,
+        backSpeed: 50,
+        loop:true,
+      }
+  );
+  
 const textureLoader = new THREE.TextureLoader()
 const normalTexture = textureLoader.load('./textures/NormalMap.png')
 
