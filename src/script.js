@@ -305,30 +305,15 @@ const tick = () =>
 tick()
 
 
-// Not Yet
-function changePlanet(){
-    console.log('vamo')
+var changePlanet = document.getElementById('changePlanetButton');
+
+changePlanet.onclick = function(){
+    let planets = ['moon', 'mars', 'neptune']
+    var planet = planets[Math.floor(Math.random() * planets.length)];
+    earth.material.map = textureLoader.load(`./images/2k_${planet}.jpg`)
 }
 
 // // Created by Bjorn Sandvik - thematicmapping.org
-// (function () {
-
-// 	var webglEl = document.getElementById('webgl2');
-
-// 	if (!Detector.webgl) {
-// 		Detector.addGetWebGLMessage(webglEl);
-// 		return;
-// 	}
-
-// 	var width  = window.innerWidth,
-// 		height = window.innerHeight;
-
-// 	// Earth params
-// 	var radius   = 0.5,
-// 		segments = 32,
-// 		rotation = 6;  
-
-// 	var scene = new THREE.Scene();
 
 // 	var camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 1000);
 // 	camera.position.z = 1.5;
@@ -336,16 +321,19 @@ function changePlanet(){
 // 	var renderer = new THREE.WebGLRenderer();
 // 	renderer.setSize(width, height);
 
+// => MAYBE LIGHT
 // 	scene.add(new THREE.AmbientLight(0x333333));
 
 // 	var light = new THREE.DirectionalLight(0xffffff, 1);
 // 	light.position.set(5,3,5);
 // 	scene.add(light);
 
+// => HOW TO OTHER ELEMENTS
 //     var sphere = createSphere(radius, segments);
 // 	sphere.rotation.y = rotation; 
 // 	scene.add(sphere)
 
+// => HOW TO OTHER ELEMENTS
 //     var clouds = createClouds(radius, segments);
 // 	clouds.rotation.y = rotation;
 // 	scene.add(clouds)
@@ -390,6 +378,7 @@ function changePlanet(){
 // 		);		
 // 	}
 
+// => INTERESSANTE
 // 	function createStars(radius, segments) {
 // 		return new THREE.Mesh(
 // 			new THREE.SphereGeometry(radius, segments, segments), 

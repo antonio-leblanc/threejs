@@ -79,3 +79,11 @@ p{
 section{
     height: 100vh;
 }
+
+#changePlanetButton{
+    color: white;
+}
+
+#changePlanetButton:hover{
+    color : yellow;
+}
