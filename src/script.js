@@ -51,12 +51,13 @@ const scene = new THREE.Scene()
 
 // Sun
     const sunGeometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
-    const sun = new THREE.Mesh(sunGeometry, sunMaterial)
+    // const sun = new THREE.Mesh(sunGeometry, sunMaterial)
+    const sun = createEarth(.4, 64)
     scene.add(sun)
 
 
 // Earth
-function createSphere(radius, segments) {
+function createEarth(radius, segments) {
     return new THREE.Mesh(
         new THREE.SphereGeometry(radius, segments, segments),
         new THREE.MeshPhongMaterial({
@@ -69,9 +70,18 @@ function createSphere(radius, segments) {
     );
 }
 
+function createMoon(radius, segments) {
+    return new THREE.Mesh(
+        new THREE.SphereGeometry(radius, segments, segments),
+        new THREE.MeshPhongMaterial({
+            map:         textureLoader.load('./images/2k_moon.jpg'),
+        })
+    );
+}
+
     const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
     // const earth = new THREE.Mesh(earthGeometry, earthMaterial)
-    const earth = createSphere(.1, 64)
+    const earth = createMoon(.1, 64)
     earth.position.set(0,0,1); // offset from center
     var earthContainer = new THREE.Object3D();
     earthContainer.add(earth)
