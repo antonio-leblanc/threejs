@@ -80,10 +80,16 @@ function createPlanet(radius, segments, planet) {
     const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
     // const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     const earth = createPlanet(.1, 64, 'moon')
-    earth.position.set(0,0,1); // offset from center
+    earth.position.set(0,0,-1); // offset from center
     var earthContainer = new THREE.Object3D();
     earthContainer.add(earth)
     scene.add(earthContainer)
+
+
+    // Mars
+    const mars = createPlanet(.2, 64, 'mars')
+    mars.position.set(2,3,-4);
+    scene.add(mars)
 
 // TORUS
     const geometry2 = new THREE.TorusGeometry( 1.5, .05, 16, 100, );
@@ -270,6 +276,7 @@ const tick = () =>
 
     torus.rotation.y = -.3 * elapsedTime
     
+    mars.rotation.y = .7 * elapsedTime
 
     particlesMesh.rotation.y = -.1* elapsedTime
     if (mouseX > 0){
