@@ -55,9 +55,23 @@ const scene = new THREE.Scene()
     scene.add(sun)
 
 
-// Satellite
+// Earth
+function createSphere(radius, segments) {
+    return new THREE.Mesh(
+        new THREE.SphereGeometry(radius, segments, segments),
+        new THREE.MeshPhongMaterial({
+            map:         textureLoader.load('./images/2_no_clouds_4k.jpg'),
+            bumpMap:     textureLoader.load('./images/elev_bump_4k.jpg'),
+            bumpScale:   0.005,
+            specularMap: textureLoader.load('/.images/water_4k.png'),
+            specular:    new THREE.Color('grey')								
+        })
+    );
+}
+
     const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
-    const earth = new THREE.Mesh(earthGeometry, earthMaterial)
+    // const earth = new THREE.Mesh(earthGeometry, earthMaterial)
+    const earth = createSphere(.1, 64)
     earth.position.set(0,0,1); // offset from center
     var earthContainer = new THREE.Object3D();
     earthContainer.add(earth)
@@ -96,9 +110,11 @@ scene.add(torus)
 
 // Light1
 
+scene.add(new THREE.AmbientLight(0x777777));
+
 const pointLight = new THREE.PointLight(0xff0000, 0.1)
 pointLight.position.set(-1,1,-.5)
-pointLight.intensity = 2
+pointLight.intensity = 0
 scene.add(pointLight)
 
 const light1 = gui.addFolder('Light 1')
@@ -114,7 +130,7 @@ scene.add(pointLightHelper1)
 
 const pointLight2 = new THREE.PointLight(0x76ff76, 0.1)
 pointLight2.position.set(1,1,-.5)
-pointLight2.intensity = 2
+pointLight2.intensity = 0
 scene.add(pointLight2)
 
 const light2 = gui.addFolder('Light 2')
