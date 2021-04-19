@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import Typed from 'typed.js'
 
+// TYPED
 var typed = new Typed('.typed-element', 
     {
         strings: [
@@ -11,8 +12,8 @@ var typed = new Typed('.typed-element',
           "Cycling",
           "Software Development",
           "Piano",
-          "Data Science",
-          "Skateboarding",
+          "Design",
+          "Artificial Intelligence",
           "Adventure"
         ],
         typeSpeed: 60,
@@ -20,10 +21,11 @@ var typed = new Typed('.typed-element',
         loop:true,
       }
   );
-  
-const textureLoader = new THREE.TextureLoader()
-const sunTexture = textureLoader.load('./textures/NormalMap.png')
-const earthNormalMap = textureLoader.load('./textures/earthMap.png')
+
+
+// THREEJS
+
+
 
 
 // Debug
@@ -38,19 +40,24 @@ const scene = new THREE.Scene()
 
 // Materials
 
-    const sunMaterial = new THREE.MeshStandardMaterial()
-    sunMaterial.metalness = 0.7
-    sunMaterial.roughness = 0.2
-    sunMaterial.normalMap = sunTexture;
-    sunMaterial.color = new THREE.Color(0xffffff)
+    const textureLoader = new THREE.TextureLoader()
 
-    const earthMaterial = new THREE.MeshStandardMaterial()
-    earthMaterial.normalMap = earthNormalMap;
+    // const sunTexture = textureLoader.load('./textures/NormalMap.png')
+    // const earthNormalMap = textureLoader.load('./textures/earthMap.png')
+
+    // const sunMaterial = new THREE.MeshStandardMaterial()
+    // sunMaterial.metalness = 0.7
+    // sunMaterial.roughness = 0.2
+    // sunMaterial.normalMap = sunTexture;
+    // sunMaterial.color = new THREE.Color(0xffffff)
+
+    // const earthMaterial = new THREE.MeshStandardMaterial()
+    // earthMaterial.normalMap = earthNormalMap;
 
     const basicMaterial = new THREE.MeshBasicMaterial()
 
 // Sun
-    const sunGeometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
+    // const sunGeometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
     // const sun = new THREE.Mesh(sunGeometry, sunMaterial)
     const sun = createEarth(.4, 64)
     scene.add(sun)
@@ -77,8 +84,6 @@ function createPlanet(radius, segments, planet) {
     );
 }
 
-    const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
-    // const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     const earth = createPlanet(.1, 64, 'moon')
     earth.position.set(0,0,-1); // offset from center
     var earthContainer = new THREE.Object3D();
@@ -91,13 +96,13 @@ function createPlanet(radius, segments, planet) {
     mars.position.set(2,3,-4);
     scene.add(mars)
 
-// TORUS
+    // TORUS
     const geometry2 = new THREE.TorusGeometry( 1.5, .05, 16, 100, );
     const torus = new THREE.Mesh(geometry2, basicMaterial)
-scene.add(torus)
+    scene.add(torus)
 
 
-// STARS
+    // STARS
 
     const pointsMaterial = new THREE.PointsMaterial(
         {
@@ -239,11 +244,12 @@ function onDocumentMouseMove(event){
 window.addEventListener('scroll', updateSphere)
 
 function updateSphere(event){
-    sun.position.y = -window.scrollY * .003
-        
+    
     if(this.oldScroll > this.scrollY){
+        mars.position.y += window.scrollY * .003
         camera.position.z -= window.scrollY * .0005
     } else {
+        mars.position.y -= window.scrollY * .003
         camera.position.z += window.scrollY * .0005
     }
     this.oldScroll = this.scrollY;
@@ -261,11 +267,12 @@ const tick = () =>
 
     const elapsedTime = clock.getElapsedTime()
 
+    // On Mouse Move
+    mars.rotation.y += .7*(targetX - mars.rotation.y)
+    mars.rotation.x += .7*(targetY - mars.rotation.x)
+    mars.position.z += .7*(targetY - mars.rotation.x)
+    
     // Update objects
-
-    sun.rotation.y += .5*(targetX - sun.rotation.y)
-    sun.rotation.x += .5*(targetY - sun.rotation.x)
-    sun.position.z += .5*(targetY - sun.rotation.x)
     sun.rotation.y = .5 * elapsedTime
     
 
@@ -298,6 +305,10 @@ const tick = () =>
 tick()
 
 
+// Not Yet
+function changePlanet(){
+    console.log('vamo')
+}
 
 // // Created by Bjorn Sandvik - thematicmapping.org
 // (function () {
