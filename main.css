@@ -80,4 +80,25 @@ section{
     height: 100vh;
 }
 
+
+.navbar{
+    z-index: 999;
+    position: absolute;
+    width: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+.navbutton:hover, a:hover{
+    color : yellow;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
 /*# sourceMappingURL=main.css.map*/
