@@ -80,10 +80,23 @@ section{
     height: 100vh;
 }
 
-#changePlanetButton{
-    color: white;
+
+.navbar{
+    z-index: 999;
+    position: absolute;
+    width: 100vh;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-#changePlanetButton:hover{
+
+.navbutton:hover, a:hover{
     color : yellow;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
