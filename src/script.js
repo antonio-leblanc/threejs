@@ -22,7 +22,9 @@ var typed = new Typed('.typed-element',
   );
   
 const textureLoader = new THREE.TextureLoader()
-const normalTexture = textureLoader.load('./textures/NormalMap.png')
+const sunTexture = textureLoader.load('./textures/NormalMap.png')
+const earthNormalMap = textureLoader.load('./textures/earthMap.png')
+
 
 // Debug
 const gui = new dat.GUI()
@@ -36,24 +38,26 @@ const scene = new THREE.Scene()
 
 // Materials
 
-    const textureMaterial = new THREE.MeshStandardMaterial()
-    textureMaterial.metalness = 0.7
-    textureMaterial.roughness = 0.2
-    textureMaterial.normalMap = normalTexture;
-    textureMaterial.color = new THREE.Color(0xffffff)
+    const sunMaterial = new THREE.MeshStandardMaterial()
+    sunMaterial.metalness = 0.7
+    sunMaterial.roughness = 0.2
+    sunMaterial.normalMap = sunTexture;
+    sunMaterial.color = new THREE.Color(0xffffff)
 
+    const earthMaterial = new THREE.MeshStandardMaterial()
+    earthMaterial.normalMap = earthNormalMap;
 
     const basicMaterial = new THREE.MeshBasicMaterial()
 
 // Sun
     const sunGeometry = new THREE.SphereBufferGeometry( .4, 64, 64 );
-    const sun = new THREE.Mesh(sunGeometry, textureMaterial)
+    const sun = new THREE.Mesh(sunGeometry, sunMaterial)
     scene.add(sun)
 
 
 // Satellite
     const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
-    const earth = new THREE.Mesh(earthGeometry, basicMaterial)
+    const earth = new THREE.Mesh(earthGeometry, earthMaterial)
     earth.position.set(0,0,1); // offset from center
     var earthContainer = new THREE.Object3D();
     earthContainer.add(earth)
@@ -71,7 +75,6 @@ scene.add(torus)
         {
             transparent: true,
             size:0.005,
-            // map:normalTexture,
             color:'white',
         }
     )
@@ -218,6 +221,7 @@ function updateSphere(event){
 
 
 const clock = new THREE.Clock()
+torus.rotation.x = -1
 
 const tick = () =>
 {
