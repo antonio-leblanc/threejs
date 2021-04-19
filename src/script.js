@@ -70,18 +70,16 @@ function createEarth(radius, segments) {
     );
 }
 
-function createMoon(radius, segments) {
+function createPlanet(radius, segments, planet) {
     return new THREE.Mesh(
         new THREE.SphereGeometry(radius, segments, segments),
-        new THREE.MeshPhongMaterial({
-            map:         textureLoader.load('./images/2k_moon.jpg'),
-        })
+        new THREE.MeshPhongMaterial({map:textureLoader.load(`./images/2k_${planet}.jpg`)})
     );
 }
 
     const earthGeometry = new THREE.SphereBufferGeometry( .1, 64, 64 );
     // const earth = new THREE.Mesh(earthGeometry, earthMaterial)
-    const earth = createMoon(.1, 64)
+    const earth = createPlanet(.1, 64, 'moon')
     earth.position.set(0,0,1); // offset from center
     var earthContainer = new THREE.Object3D();
     earthContainer.add(earth)
